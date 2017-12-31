@@ -14,6 +14,7 @@ Webpack 环境下的静态资源文件加载器。
 - `invokerRoot` 必选参数，表示调用该资源文件的样式表所在目录。要求为绝对路径。
 - `limit` 可选，单位byte，表示base64与否的阈值，大于该 limit 值的文件将被保留原始物理文件参与构建，小于该值的文件将被 base64编码压进引用文件源码中。
 - `publicPath` 可选，表示生产环境下的域名路径，若不指定，则从 webpack.output.publicPath继承。
+- `outputPath` 可选，表示文件的复制目录。
 
 ```
 {
