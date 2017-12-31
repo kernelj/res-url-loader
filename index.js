@@ -5,7 +5,7 @@ var minetype = require("mime");
 var path = require('path');
 
 module.exports = function(content){
-	var query, limit, mine, publicPath, config, relativePath, basename, url;
+	var query, limit, mine, publicPath, config, relativePath, basename, url, outputPath;
 	var resourcePath = this.resourcePath;
 
 	// 缓存 loader 结果
@@ -20,6 +20,8 @@ module.exports = function(content){
 			: ((this.options && this.options.url && this.options.url.dataUrlLimit) || 0);
 
 	mine = query.mimetype || query.minetype || minetype.lookup(resourcePath);
+	
+	outputPath = query.outputPath || '';
 
 	// 小于指定大小的文件 base64
 	if(limit <= 0 || content.length < limit){
@@ -90,7 +92,7 @@ module.exports = function(content){
 		}
 
 		// 指定文件路径生成文件
-		this.emitFile(url, content);
+		this.emitFile(outputPath + url, content);
 
 		// Handle directory separator
 		publicPath = publicPath.replace(/(?:\\)+/g, path.posix.sep);
